@@ -1,0 +1,8 @@
+<!-- patient-detail.component.html -->
+<div *ngIf="patient">
+  <p>Document: {{ patient?.documentNumber }}</p>
+  <p>Name: {{ patient?.firstName }} {{ patient?.lastName }}</p>
+  <p>Email: {{ patient?.email }}</p>
+  <p>Phone: {{ patient?.phoneNumber }}</p>
+  <p>Birth Date: {{ patient?.birthDate | date }}</p>
+</div>

@@ -1,0 +1,74 @@
+<div class="app-card">
+
+
+    <h2 class="page-title">Listar / Ver Pacientes</h2>
+
+
+    <div class="filters">
+
+        <div class="filter">
+            <label for="nameFilter">Buscar por nombre</label>
+            <div class="input-group">
+                <i class="icon">&#128269;</i>
+                <input type="text" id="nameFilter" [(ngModel)]="nameFilter" (input)="onFilterChange()"
+                    placeholder="Enter name" />
+            </div>
+        </div>
+
+        <div class="filter">
+            <label for="docFilter">buscar por numero de documento </label>
+            <div class="input-group">
+                <i class="icon">&#128100;</i>
+                <input type="text" id="docFilter" [(ngModel)]="docFilter" (input)="onFilterChange()"
+                    placeholder="Enter document number" />
+            </div>
+        </div>
+
+        <div class="export-box">
+            <button class="export-btn" (click)="exportExcel()">
+                📄 Export Excel
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>Tipo de Documento</th>
+                    <th>Numero de Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento </th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Fecha de Creacion</th>
+                    <th class="center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let p of patients">
+                    <td>{{ p.documentType }}</td>
+                    <td>{{ p.documentNumber }}</td>
+                    <td>{{ p.firstName }}</td>
+                    <td>{{ p.lastName }}</td>
+                    <td>{{ p.birthDate | date:'short' }}</td>
+                    <td>{{ p.email }}</td>
+                    <td>{{ p.phoneNumber }}</td>
+                    <td>{{ p.createdAt | date:'short' }}</td>
+
+                    <td class="center actions">
+                        <button class="icon-btn warning" [routerLink]="['/edit', p.patientId]">✏️</button>
+
+                        <button class="icon-btn danger" (click)="deletePatient(p.patientId!)">🗑️</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
